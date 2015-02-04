@@ -1,6 +1,7 @@
-# cnkeats
-# CS 491
-# 50's Chord Progression
+cnkeats
+CS 491
+50's Chord Progression
+
 
 Playing the song:
   $make play
