@@ -1,6 +1,6 @@
 #Place the names of all your tracks here (as RRA filenames)
 
-WAV = YouCanCallMeAlKaraokeTuned.wav
+MP3 = YouCanCallMeAlKaraoke.mp3
 
-play	: $(WAV)
-		play $(WAV)
+play	: $(MP3)
+		play $(MP3)
