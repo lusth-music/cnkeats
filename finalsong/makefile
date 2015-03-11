@@ -1,8 +1,8 @@
 #Place the names of all your tracks here (as RRA filenames)
 
-RRA = rpiano.rra
-SRRA = s-rpiano.rra
-TMPF = rpiano.c~
+RRA = song.rra
+SRRA = s-song.rra
+TMPF = song.c~
 INCLUDE=/usr/local/include/songlib/
 LIB=/usr/local/lib/
 
@@ -23,8 +23,8 @@ play	: $(RRA)
 playmix : mix.rra
 		rplay mix.rra
 
-s-quickstart.rra : rpiano.rra
-		rrastereo -r rpiano.rra s-rpiano.rra
+s-quickstart.rra : song.rra
+		rrastereo -r song.rra s-song.rra
 
 playmaster:  $(SRRA)
 	rrafastmixer $(SRRA) | rramaster ! rplay
