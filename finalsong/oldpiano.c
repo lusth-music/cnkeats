@@ -15,7 +15,7 @@
 
 /* change PROGRAM_NAME and PROGRAM_VERSION appropriately */
 
-char *PROGRAM_NAME = "song";
+char *PROGRAM_NAME = "piano";
 char *PROGRAM_VERSION = "0.01";
 
 int
@@ -46,7 +46,7 @@ main()
 
     int location;
 
-    openOutput("song.rra",0,0);
+    openOutput("piano.rra",0,0);
 
 /*
     rest(W);
@@ -167,23 +167,28 @@ for (i = 0; i < 2; i++) {
     c(4,W,cello,octave-1);
     c(5,W,cello,octave-1);
     setLocation(location);
-    setAmplitude(.085);
-    b(1,W,sax,octave,"x-x","xx-",SX);
-    b(6,H,sax,octave-1,"xxx","-xx",SX);
-    b(6,H,sax,octave-1,"xx-","-xx",SX);
-    b(4,W,sax,octave-1,"x-x","xx-",SX);
-    b(5,H,sax,octave-1,"xxx","-xx",SX);
-    b(5,H,sax,octave-1,"xx-","-xx",SX);
+    setAmplitude(.195);
+    b(1,H,sax,octave,"x-x","xx-",SX);
+    rest(H);
+    b(6,Q,sax,octave-1,"xxx","-xx",SX);
+    rest(Q);
+    b(6,Q,sax,octave-1,"xx-","-xx",SX);
+    rest(Q);
+    b(4,H,sax,octave-1,"x-x","xx-",SX);
+    rest(H);
+    b(5,Q,sax,octave-1,"xxx","-xx",SX);
+    rest(Q);
+    b(5,Q,sax,octave-1,"xx-","-xx",SX);
+    rest(Q);
     setAmplitude(.25);
     setLocation(location);
-    b(1,W,piano,octave,"x-x","xx-",SX);
-    b(6,H,piano,octave-1,"xxx","-xx",SX);
-    b(6,H,piano,octave-1,"xx-","-xx",SX);
-    b(4,W,piano,octave-1,"x-x","xx-",SX);
-    b(5,H,piano,octave-1,"xxx","-xx",SX);
-    b(5,H,piano,octave-1,"xx-","-xx",SX);
+    b(1,W,piano,octave-1,"x-x","xx-",SX);
+    b(6,H,piano,octave-2,"xxx","-xx",SX);
+    b(6,H,piano,octave-2,"xx-","-xx",SX);
+    b(4,W,piano,octave-2,"x-x","xx-",SX);
+    b(5,H,piano,octave-2,"xxx","-xx",SX);
+    b(5,H,piano,octave-2,"xx-","-xx",SX);
 }
-rest(W*3);
 
 for (i = 0; i < 3; i++) {
     location = getLocation();
