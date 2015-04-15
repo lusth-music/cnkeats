@@ -9,10 +9,10 @@ all : $(RRA)
 		./$<
 
 %.x	: %.c
-		gcc -Wall -g -o $@ -I$(INCLUDE) $< -L$(LIB) -lsong -lm 
+		gcc -Wall -g -o $@ -I$(INCLUDE) $< -L$(LIB) -lsong -lm
 
 mix	: $(RRA)
-		rrafastmixer $(RRA) > mix.rra
+		rrafastmixer -a0.5 $(RRA) | rplay
 
 mixstereo	: $(RRA)
 		rrafastmixer -a0.5 $(RRA) | rplay
@@ -32,4 +32,4 @@ rraidentity : rraidentity.c
 .PHONY : clean
 
 clean :
-	rm -f $(RRA) $(SRRA) mix.rra *.x
+		rm -f $(RRA) $(SRRA) mix.rra *.x
