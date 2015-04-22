@@ -32,7 +32,7 @@ main()
 	openOutput("piano.rra",0,0);
 
 	setAmplitude(.15);
-	setSustain(0.999945);
+	setSustain(0.99985);
 
 	#include "song"
 	
