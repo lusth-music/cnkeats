@@ -1,5 +1,7 @@
-RRA = piano.rra
-SRRA = stereo.rra
+#Place the names of all your tracks here (as RRA filenames)
+
+RRA = piano.rra guitar.rra drums.rra
+SRRA = piano.rra guitar.rra drums.rra
 INCLUDE=/usr/local/include/songlib/
 LIB=/usr/local/lib/
 
@@ -8,28 +10,37 @@ all : $(RRA)
 %.rra	: %.x
 		./$<
 
-%.x	: %.c
-		gcc -Wall -g -o $@ -I$(INCLUDE) $< -L$(LIB) -lsong -lm
+%.x	: %.c song
+		gcc -Wall -o $@ -I$(INCLUDE) $< -L$(LIB) -lsong -lm 
 
-mix	: $(RRA)
-		rrafastmixer -a0.5 $(RRA) | rplay
-
-mixstereo	: $(RRA)
-		rrafastmixer -a0.5 $(RRA) | rplay
-
-mix.rra	: $(RRA)
-		rrafastmixer -a0.5 $(RRA) > mix.rra
+mix.rra		: $(RRA)
+		rrafastmixer $(RRA) > mix.rra
 
 play	: $(RRA)
 		rplay $(RRA)
 
-playmix	: mix.rra
+playmix : mix.rra
 		rplay mix.rra
 
+s-rpiano.rra : rpiano.rra
+		rrastereo -r rpiano.rra s-rpiano.rra
+
+playmaster:  $(SRRA)
+	rrafastmixer $(SRRA) | rramaster ! rplay
+
+master.rra :  $(SRRA)
+	rrafastmixer $(SRRA) | rramaster > master.rra
+
+master.mp3 : master.rra
+	rra2mp3 master.rra
+
 rraidentity : rraidentity.c
-		gcc -Wall -g -o rraidentity -I$(INCLUDE) rraidentity.c -L$(LIB) -lsong -lm
+		gcc -Wall -g -o rraidentity rraidentity.c -lsong -lm 
+
+song : 
+
 
 .PHONY : clean
 
 clean :
-		rm -f $(RRA) $(SRRA) mix.rra *.x
+		rm -f $(RRA) $(SRRA) master.rra mix.rra master.mp3
