@@ -1,0 +1,17 @@
+echo you may be asked for your local password ...
+TARGET=/usr/local/share/samples/vocals-female/
+sudo mkdir -p $TARGET
+echo converting flac to rra...
+for i in la_a#3.flac la_a3.flac la_a#4.flac la_a4.flac la_b3.flac la_b4.flac la_c#4.flac la_c4.flac la_c#5.flac la_c5.flac la_d#4.flac la_d4.flac la_d#5.flac la_d5.flac la_e4.flac la_e5.flac la_f#4.flac la_f4.flac la_f#5.flac la_f5.flac la_g#4.flac la_g4.flac la_g5.flac; do
+    flac2rra $i
+    where=`dirname $i`
+    name=`basename $i .flac`
+    if [ $where = "." ]
+        then
+        sudo cp $name.rra $TARGET/
+    else
+        sudo mkdir -p $TARGET/$where
+        sudo cp $where/$name.rra $TARGET/$where/
+    fi
+    rm $i
+done
